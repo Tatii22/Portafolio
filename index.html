@@ -1,0 +1,370 @@
+<!--
+README (resumen) - Incluido aquí para facilidad. Quita este bloque si subes solo index.html
+
+# Portafolio One Page - Tatiana Villamizar
+
+Archivos:
+- portafolio-tatiana.html (esta página, single-file para facilitar despliegue)
+- img/ (opcional: agregar imágenes optimizadas .webp si decides separarlas)
+
+Cómo desplegar en GitHub Pages (rápido):
+1. git init
+2. git add .
+3. git commit -m "chore: inicializar portafolio"
+4. git branch -M main
+5. git remote add origin https://github.com/Tatii22/portafolio-tatiana.git
+6. git push -u origin main
+7. En GitHub: Settings -> Pages -> Branch: main -> /root -> Save
+
+Git Flow sugerido (ejemplos de commit convencionales):
+- feat: agregar estructura HTML base
+- style: añadir estilos responsivos y paleta morada
+- feat: añadir carousel de proyectos
+- fix: corregir responsive en móvil
+
+-->
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tatiana Villamizar — Portafolio</title>
+  <meta name="description" content="Portafolio de Tatiana Villamizar - Ingeniera de sistemas en formación. Proyectos, habilidades y contacto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #ffffff;
+      --card: #f6f5fb;
+      --muted: #7a6f8e;
+      --accent: #7a4bd6; /* morado bonito */
+      --accent-2: #a987f7;
+      --glass: rgba(255,255,255,0.6);
+      --text: #221f2b;
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, Poppins, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg, #ffffff 0%, #fcfbff 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:60px;
+    }
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:40;backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
+      border-bottom: 1px solid rgba(122,75,214,0.06);
+    }
+    .nav-wrapper{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand h1{font-size:1.05rem;margin:0;font-weight:700}
+    .brand p{margin:0;font-size:0.82rem;color:var(--muted)}
+    nav ul{display:flex;gap:14px;list-style:none;margin:0;padding:0}
+    nav a{font-weight:600;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px}
+    nav a:hover{background:linear-gradient(90deg,var(--accent) 0%, var(--accent-2) 120%);color:white}
+
+    /* Hero */
+    .hero{max-width:1100px;margin:28px auto 18px;padding:28px 18px;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center}
+    .intro h2{font-size:1.8rem;margin:0 0 8px}
+    .intro p{color:var(--muted);margin:0 0 18px}
+    .cta{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:12px;border:0;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(122,75,214,0.14);transition:transform .18s ease, box-shadow .18s}
+    .btn.secondary{background:transparent;color:var(--accent);border:1.5px solid rgba(122,75,214,0.12);box-shadow:none}
+    .btn:active{transform:translateY(1px)}
+
+    .card-profile{background:linear-gradient(180deg,var(--card),#fff);padding:18px;border-radius:16px;box-shadow:0 8px 30px rgba(34,31,43,0.06);text-align:center}
+    .avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(122, 75, 214, 0.15);
+}
+    .role{color:var(--muted);font-size:0.9rem;margin-top:8px}
+
+    /* Skills */
+    .skills{max-width:1100px;margin:12px auto;padding:18px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{padding:8px 12px;border-radius:999px;background:linear-gradient(180deg,#fff,#f3f2fb);border:1px solid rgba(122,75,214,0.06);font-weight:600;box-shadow:0 6px 14px rgba(34,31,43,0.04);cursor:default;transition:transform .12s ease, box-shadow .12s}
+    .chip:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(122,75,214,0.09)}
+
+    /* Projects */
+    .projects{max-width:1100px;margin:18px auto;padding:18px}
+    .projects-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .carousel{position:relative}
+    .cards{display:flex;gap:18px;overflow:hidden;padding-bottom:6px}
+    .project-card{min-width:280px;max-width:320px;background:white;border-radius:14px;padding:14px;border:1px solid rgba(34,31,43,0.04);box-shadow:0 8px 24px rgba(34,31,43,0.04);transition:transform .18s}
+    .project-card img{width:100%;height:160px;object-fit:cover;border-radius:10px}
+    .project-card h3{margin:10px 0 6px;font-size:1.02rem}
+    .project-card p{margin:0;color:var(--muted);font-size:0.92rem}
+    .project-card .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{font-size:0.78rem;padding:6px 8px;border-radius:8px;background:linear-gradient(180deg,#faf8ff,#f3f2fb);border:1px solid rgba(122,75,214,0.06)}
+    .project-actions{display:flex;gap:8px;margin-top:12px}
+    .ghost{background:transparent;border:1px solid rgba(34,31,43,0.08);padding:8px 10px;border-radius:10px;cursor:pointer}
+
+    .carousel-controls{display:flex;gap:8px}
+    .control{background:var(--card);border-radius:10px;padding:8px;border:0;cursor:pointer}
+
+    /* Contact */
+    .contact{max-width:1100px;margin:18px auto;padding:18px}
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .contact-card{background:linear-gradient(180deg,#fff,#fbfbff);padding:18px;border-radius:14px;border:1px solid rgba(122,75,214,0.04)}
+    label{display:block;font-size:0.9rem;margin-bottom:6px;font-weight:600}
+    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(34,31,43,0.08);font-size:0.95rem}
+    textarea{min-height:110px}
+    .contact-links{display:flex;flex-direction:column;gap:8px}
+
+    footer{max-width:1100px;margin:28px auto;padding:18px;color:var(--muted);text-align:center}
+
+    /* Responsive */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr 300px}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:720px){
+      .hero{grid-template-columns:1fr;gap:16px;padding:12px}
+      nav ul{display:none}
+      .brand p{display:none}
+      .cards{padding:6px;gap:12px}
+      .project-card{min-width:240px}
+    }
+
+    /* small animations */
+    .fade-up{opacity:0;transform:translateY(6px);transition:opacity .48s ease, transform .48s ease}
+    .fade-up.in{opacity:1;transform:none}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrapper">
+      <div class="brand">
+        <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:white;font-weight:700">TV</div>
+        <div>
+          <h1>Tatiana Villamizar</h1>
+          <p>Ingeniería de sistemas • Técnico laboral en desarrollo de software (en formación)</p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">Sobre mí</a></li>
+          <li><a href="#skills">Habilidades</a></li>
+          <li><a href="#projects">Proyectos</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="intro fade-up" id="intro">
+        <h2>Ingeniera de sistemas y desarrolladora de software en formación</h2>
+        <p>Ingeniera de sistemas y desarrolladora de software en formación, con habilidades en resolución de problemas, comunicación efectiva y trabajo en equipo; me destaco por mi responsabilidad, adaptabilidad y compromiso con el aprendizaje continuo.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">Ver proyectos</a>
+          <a class="btn secondary" href="https://github.com/Tatii22" target="_blank" rel="noopener">Mi GitHub</a>
+        </div>
+      </div>
+
+      <aside class="card-profile fade-up" id="profile">
+        <div class="avatar" aria-hidden>
+          <img src="/img/tata.jpg" alt="Tatiana Villamizar" class="avatar">
+        </div>
+        <div style="margin-top:10px">
+          <div style="font-weight:700">Tatiana Villamizar</div>
+          <div class="role">Ingeniera de sistemas • Desarrollo de software</div>
+        </div>
+        <div style="margin-top:12px;color:var(--muted);font-size:0.92rem">Disponible para proyectos y oportunidades de aprendizaje</div>
+      </aside>
+    </section>
+
+    <section class="skills" id="skills">
+      <h2>Habilidades</h2>
+      <p style="color:var(--muted)">Habilidades técnicas y habilidades blandas destacadas.</p>
+      <div style="margin-top:12px">
+        <div style="margin-bottom:8px;font-weight:700">Técnicas</div>
+        <div class="chips" id="skills-chips">
+          <!-- chips generados -->
+        </div>
+      </div>
+      <div style="margin-top:14px">
+        <div style="margin-bottom:8px;font-weight:700">Blandas</div>
+        <div class="chips" id="soft-chips"></div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="projects-head">
+        <div>
+          <h2>Proyectos destacados</h2>
+          <p style="color:var(--muted);margin:6px 0 0">Muestra breve de 4 proyectos. Haz click en Ver código para abrir cada repositorio.</p>
+        </div>
+        <div class="carousel-controls">
+          <button class="control" id="prev">◀</button>
+          <button class="control" id="next">▶</button>
+        </div>
+      </div>
+
+      <div class="carousel">
+        <div class="cards" id="cards">
+          <!-- project cards injected -->
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Contacto</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <p style="margin:0 0 8px;color:var(--muted)">¿Tienes una oportunidad o quieres colaborar? Envíame un mensaje o usa los enlaces de contacto.</p>
+          <div class="contact-links" style="margin-top:12px">
+            <div><strong>Email:</strong> <a href="mailto:tm8497077@gmail.com">tm8497077@gmail.com</a></div>
+            <div><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/claudia-tatiana-villamizar-marquez-aa2a7a277/" target="_blank">Perfil</a></div>
+            <div><strong>GitHub:</strong> <a href="https://github.com/Tatii22" target="_blank">Tatii22</a></div>
+          </div>
+        </div>
+
+        <form class="contact-card" id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" placeholder="Tu nombre" required>
+
+          <label for="email">Correo</label>
+          <input id="email" name="email" type="email" placeholder="tu@mail.com" value="tm8497077@gmail.com" required>
+
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" placeholder="Escribe tu mensaje" required></textarea>
+
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+            <button class="btn" type="submit">Enviar mensaje</button>
+            <button type="button" class="btn secondary" onclick="location.href='mailto:tm8497077@gmail.com'">Enviar por email</button>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>© 2025 Claudia Tatiana Villamizar Márquez – Todos los derechos reservados</div>
+  </footer>
+
+  <script>
+    // Datos inyectados desde tus respuestas
+    const TECH = ["HTML","CSS","Python","MySQL","Git","GitHub","SCRUM"];
+    const SOFT = ["Liderazgo","Creatividad","Empatía","Disciplina","Adaptabilidad","Paciencia","Proactividad","Comunicación"];
+
+    const PROJECTS = [
+      {
+        title: "Red Social Gamer",
+        desc: "Mini-sprint en Python aplicando Scrum. Red social en consola con publicaciones, comentarios y likes.",
+        tech: ["Python","Scrum"],
+        url: "https://github.com/Tatii22/Red-Social-Gamer.git",
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23f6f5fb'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='20' fill='%237a6f8e'>Red Social Gamer</text></svg>"
+      },
+      {
+        title: "Base de Datos E-Commerce",
+        desc: "Diseño, desarrollo y gestión de una base de datos para un e-commerce.",
+        tech: ["SQL","Docker"],
+        url: "https://github.com/Tatii22/Proyecto-de-Base-de-Datos-para-un-E-commerce.git",
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23fff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='20' fill='%237a6f8e'>Proyecto E-Commerce</text></svg>"
+      },
+      {
+        title: "Landing Page - Maquetado",
+        desc: "Maquetado de una página con efectos en HTML y CSS.",
+        tech: ["HTML","CSS"],
+        url: "https://github.com/Tatii22/Car-Dealer-App-UI-Design.git",
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23faf8ff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='20' fill='%237a6f8e'>Landing Page</text></svg>"
+      },
+      {
+        title: "FakeStore - Proyecto JS",
+        desc: "Tienda simulada consumiendo FakeStoreAPI. Uso de fetch y localStorage para carrito.",
+        tech: ["HTML","JS","CSS"],
+        url: "https://github.com/Tatii22/Proyecto-Js.git",
+        img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23fffaf0'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='20' fill='%237a6f8e'>FakeStore JS</text></svg>"
+      }
+    ];
+
+    // render chips
+    const chipsContainer = document.getElementById('skills-chips');
+    TECH.forEach(t=>{
+      const c = document.createElement('div');
+      c.className='chip';
+      c.textContent = t;
+      chipsContainer.appendChild(c);
+    });
+    const softContainer = document.getElementById('soft-chips');
+    SOFT.forEach(s=>{
+      const c = document.createElement('div');
+      c.className='chip';
+      c.textContent = s;
+      softContainer.appendChild(c);
+    });
+
+    // render projects
+    const cards = document.getElementById('cards');
+    PROJECTS.forEach(p=>{
+      const card = document.createElement('article');
+      card.className='project-card fade-up';
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.title}">
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class=\"tags\">${p.tech.map(t=>`<span class=\"tag\">${t}</span>`).join('')}</div>
+        <div class=\"project-actions\">
+          <a class=\"ghost\" href=\"${p.url}\" target=\"_blank\" rel=\"noopener\">Ver código</a>
+        </div>
+      `;
+      cards.appendChild(card);
+    });
+
+    // simple carousel logic
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let idx = 0;
+    function scrollToIndex(i){
+      const card = cards.children[i];
+      if(!card) return;
+      cards.scrollTo({left: card.offsetLeft - 12, behavior:'smooth'});
+      // reveal animation
+      Array.from(cards.children).forEach(c=>c.classList.remove('in'));
+      card.classList.add('in');
+    }
+    prev.addEventListener('click', ()=>{ idx = Math.max(0, idx-1); scrollToIndex(idx)});
+    next.addEventListener('click', ()=>{ idx = Math.min(cards.children.length-1, idx+1); scrollToIndex(idx)});
+
+    // on load, reveal some
+    window.addEventListener('load', ()=>{
+      document.querySelectorAll('.fade-up').forEach((el,i)=> setTimeout(()=>el.classList.add('in'), 80*i));
+      // ensure first card visible
+      scrollToIndex(0);
+    });
+
+    // small improvement: keyboard nav for carousel
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'ArrowLeft') prev.click();
+      if(e.key === 'ArrowRight') next.click();
+    });
+
+    // contact form: simple client-side validation and success message
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      // Note: leave form action to Formspree or similar. Here we show friendly message then allow submit.
+      // e.preventDefault();
+      // alert('Formulario enviado. En producción redirige a Formspree o backend.');
+    });
+
+  </script>
+</body>
+</html>
