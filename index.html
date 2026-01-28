@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tatiana Villamizar | Portafolio</title>
+    <meta
+      name="description"
+      content="Portafolio de Tatiana Villamizar, desarrolladora de software junior. Proyectos en Python, JavaScript y bases de datos."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="nav-wrapper">
+        <div class="brand">
+          <div class="logo">TV</div>
+          <div>
+            <h1>Tatiana Villamizar</h1>
+            <p>Ingeniería de sistemas • Desarrolladora de software junior</p>
+          </div>
+        </div>
+
+        <nav>
+          <ul>
+            <li><a href="#about">Sobre mí</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#contact">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO / ABOUT -->
+      <section class="hero" id="about">
+        <div class="intro fade-up">
+          <h2>Ingeniera de sistemas y desarrolladora de software</h2>
+          <p>
+            Ingeniera de sistemas en formación con experiencia en desarrollo de
+            aplicaciones utilizando Python y JavaScript, manejo de bases de
+            datos MySQL y control de versiones con Git. Me interesa crear
+            soluciones funcionales, aprender buenas prácticas y crecer
+            profesionalmente dentro de equipos de desarrollo.
+          </p>
+
+          <div class="cta">
+            <a class="btn" href="#projects">Ver proyectos</a>
+            <a
+              class="btn secondary"
+              href="https://github.com/Tatii22"
+              target="_blank"
+              rel="noopener"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <aside class="card-profile fade-up" id="profile">
+          <div class="avatar-wrapper">
+            <img src="img/image.png" alt="Tatiana Villamizar" class="avatar" />
+          </div>
+
+          <div class="profile-info">
+            <h3 class="name">Tatiana Villamizar</h3>
+            <p class="role">
+              Ingeniería de Sistemas · Desarrolladora Full Stack Junior
+            </p>
+          </div>
+
+          <p class="availability">
+            Disponible para prácticas y oportunidades junior
+          </p>
+        </aside>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="skills" id="skills">
+        <h2>Habilidades</h2>
+        <p class="section-desc">
+          Tecnologías utilizadas en proyectos académicos y personales.
+        </p>
+
+        <div class="skills-group">
+          <h3>Técnicas</h3>
+          <div class="chips" id="skills-chips"></div>
+        </div>
+
+        <div class="skills-group">
+          <h3>Blandas</h3>
+          <div class="chips" id="soft-chips"></div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="projects" id="projects">
+        <div class="projects-head">
+          <div>
+            <h2>Proyectos destacados</h2>
+            <p class="section-desc">
+              Proyectos desarrollados durante mi proceso de formación.
+            </p>
+          </div>
+
+          <div class="carousel-controls">
+            <button class="control" id="prev" aria-label="Anterior">◀</button>
+            <button class="control" id="next" aria-label="Siguiente">▶</button>
+          </div>
+        </div>
+
+        <div class="carousel">
+          <div class="viewport">
+            <div class="cards" id="cards"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="contact">
+        <h2>Contacto</h2>
+
+        <div class="contact-grid">
+          <!-- Info y botones de contacto -->
+          <div class="contact-card">
+            <p class="section-desc">
+              ¿Tienes una oportunidad o proyecto en mente? Contáctame por los
+              siguientes medios:
+            </p>
+
+            <div class="contact-buttons">
+              <a href="mailto:tm8497077@gmail.com" class="btn-contact fade-up">
+                <i class="bi bi-envelope-fill"></i> Email
+              </a>
+              <a
+                href="https://www.linkedin.com/in/claudia-tatiana-villamizar-marquez-aa2a7a277/"
+                target="_blank"
+                rel="noopener"
+                class="btn-contact linkedin fade-up"
+              >
+                <i class="bi bi-linkedin"></i> LinkedIn
+              </a>
+              <a
+                href="https://github.com/Tatii22"
+                target="_blank"
+                rel="noopener"
+                class="btn-contact github fade-up"
+              >
+                <i class="bi bi-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Formulario -->
+          <form
+            class="contact-card"
+            id="contactForm"
+            action="https://formspree.io/f/tu-id-del-formulario"
+            method="POST"
+          >
+            <label for="name">Nombre</label>
+            <input id="name" name="name" placeholder="Tu nombre" required />
+
+            <label for="email">Correo</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="tu@mail.com"
+              required
+            />
+
+            <label for="message">Mensaje</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Escribe tu mensaje"
+              required
+            ></textarea>
+
+            <div class="form-actions">
+              <button class="btn" type="submit">Enviar mensaje</button>
+              <button
+                type="button"
+                class="btn secondary"
+                onclick="location.href = 'mailto:tm8497077@gmail.com'"
+              >
+                Enviar por email
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Tatiana Villamizar · Portafolio profesional</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
